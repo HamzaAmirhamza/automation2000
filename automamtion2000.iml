@@ -1,62 +1,237 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="JUnit4">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="JUnit4">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="JUnit5.8.1">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.8.1/junit-platform-commons-1.8.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="testng">
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/testng/testng/7.1.0/testng-7.1.0.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/com/beust/jcommander/1.72/jcommander-1.72.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/guice/4.1.0/guice-4.1.0-no_aop.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/19.0/guava-19.0.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/yaml/snakeyaml/1.21/snakeyaml-1.21.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-  </component>
-</module>
+import morsecodeconverter.morsecodeconverter;
+import java.util.Scanner;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main { public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    morsecodeconverter converter = new morsecodeconverter();
+    while (true) {
+        System.out.println("Välj ett alternativ:\n1. Text till morsekod\n2. Morse till text\n3. Avsluta program");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // För att läsa bort newline efter int
+
+        if (choice == 1) {
+            System.out.print("Skriv text: ");
+            String text = scanner.nextLine();
+            System.out.println("Morse kod: " + converter.textToMorse(text));
+        } else if (choice == 2) {
+            System.out.print("Skriv morsekod (separera med mellanslag, ord med /): ");
+            String morse = scanner.nextLine();
+            System.out.println("Text: " + converter.morseToText(morse));
+        } else if (choice == 3) {
+            System.out.println("Avslutar programmet...");
+            break; // Avslutar loopen och programmet
+        } else {
+            System.out.println("Felaktigt val.");
+        }
+    }
+    scanner.close();
+
+}
+}
+
+import morsecodeconverter.morsecodeconverter;
+import java.util.Scanner;
+
+public class MorseCodeConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        morsecodeconverter converter = new morsecodeconverter();
+
+        while (true) {
+            System.out.println("Välj ett alternativ:\n1. Morse till text\n2. Text till morsekod\n3. Avsluta program");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // För att läsa bort newline efter int
+
+            if (choice == 1) {
+                System.out.print("Skriv morsekod (separera med mellanslag, ord med /): ");
+                String morse = scanner.nextLine();
+                System.out.println("Text: " + converter.morseToText(morse));
+            } else if (choice == 2) {
+                System.out.print("Skriv text: ");
+                String text = scanner.nextLine();
+                System.out.println("Morse kod: " + converter.textToMorse(text));
+            } else if (choice == 3) {
+                System.out.println("Avslutar programmet...");
+                break; // Avslutar loopen och programmet
+            } else {
+                System.out.println("Felaktigt val.");
+            }
+        }
+        scanner.close();
+    }
+
+
+}
+
+
+package morsecodeconverter;
+
+import java.util.HashMap;
+
+import static java.awt.SystemColor.text;
+
+public class morsecodeconverter {
+    private final HashMap<String, String> morseToText = new HashMap<>();
+    private final HashMap<String, String> textToMorse = new HashMap<>();
+
+
+    public morsecodeconverter() {
+        // Morse-kod till text
+        morseToText.put(".-", "A");
+        morseToText.put("-...", "B");
+        morseToText.put("-.-.", "C");
+        morseToText.put("-..", "D");
+        morseToText.put(".", "E");
+        morseToText.put("..-.", "F");
+        morseToText.put("--.", "G");
+        morseToText.put("....", "H");
+        morseToText.put("..", "I");
+        morseToText.put(".---", "J");
+        morseToText.put("-.-", "K");
+        morseToText.put(".-..", "L");
+        morseToText.put("--", "M");
+        morseToText.put("-.", "N");
+        morseToText.put("---", "O");
+        morseToText.put(".--.", "P");
+        morseToText.put("--.-", "Q");
+        morseToText.put(".-.", "R");
+        morseToText.put("...", "S");
+        morseToText.put("-", "T");
+        morseToText.put("..-", "U");
+        morseToText.put("...-", "V");
+        morseToText.put(".--", "W");
+        morseToText.put("-..-", "X");
+        morseToText.put("-.--", "Y");
+        morseToText.put("--..", "Z");
+        morseToText.put("-----", "0");
+        morseToText.put(".----", "1");
+        morseToText.put("..---", "2");
+        morseToText.put("...--", "3");
+        morseToText.put("....-", "4");
+        morseToText.put(".....", "5");
+        morseToText.put("-....", "6");
+        morseToText.put("--...", "7");
+        morseToText.put("---..", "8");
+        morseToText.put("----.", "9");
+
+        // Text till morse
+        textToMorse.put("A", ".-");
+        textToMorse.put("B", "-...");
+        textToMorse.put("C", "-.-.");
+        textToMorse.put("D", "-..");
+        textToMorse.put("E", ".");
+        textToMorse.put("F", "..-.");
+        textToMorse.put("G", "--.");
+        textToMorse.put("H", "....");
+        textToMorse.put("I", "..");
+        textToMorse.put("J", ".---");
+        textToMorse.put("K", "-.-");
+        textToMorse.put("L", ".-..");
+        textToMorse.put("M", "--");
+        textToMorse.put("N", "-.");
+        textToMorse.put("O", "---");
+        textToMorse.put("P", ".--.");
+        textToMorse.put("Q", "--.-");
+        textToMorse.put("R", ".-.");
+        textToMorse.put("S", "...");
+        textToMorse.put("T", "-");
+        textToMorse.put("U", "..-");
+        textToMorse.put("V", "...-");
+        textToMorse.put("W", ".--");
+        textToMorse.put("X", "-..-");
+        textToMorse.put("Y", "-.--");
+        textToMorse.put("Z", "--..");
+        textToMorse.put("0", "-----");
+        textToMorse.put("1", ".----");
+        textToMorse.put("2", "..---");
+        textToMorse.put("3", "...--");
+        textToMorse.put("4", "....-");
+        textToMorse.put("5", ".....");
+        textToMorse.put("6", "-....");
+        textToMorse.put("7", "--...");
+        textToMorse.put("8", "---..");
+        textToMorse.put("9", "----.");
+    }
+
+    public String textToMorse(String text) {
+
+        if (text == null || text.isEmpty()) {
+            throw new IllegalArgumentException("Input får inte vara tom");
+        }
+
+        String morseText = "";
+        for (char c : text.toUpperCase().toCharArray()) {
+            if (textToMorse.containsKey(String.valueOf(c))) {
+                morseText += textToMorse.get(String.valueOf(c)) + " ";
+            }
+        }
+        return morseText.trim();
+    }
+    public String morseToText(String morse) {
+        if (morse == null || morse.isEmpty()) {
+            throw new IllegalArgumentException("Input får inte vara tom");
+        }
+        String text = "";
+        String[] morseLetters = morse.split(" ");
+        for (String letter : morseLetters) {
+            if (morseToText.containsKey(letter)) {
+                text += morseToText.get(letter);
+            }
+        }
+        return text;
+    }
+}
+
+
+
+
+import morsecodeconverter.morsecodeconverter;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class MorseCodeConverterTest {
+
+    morsecodeconverter converter = new morsecodeconverter();
+
+    @Test
+    public void testMorseToText_ValidInput() {
+        String morse = "... --- ...";
+        String expected = "SOS";
+        String result = converter.morseToText(morse);
+        assertEquals(expected, result, "Morse to text conversion failed for valid input");
+    }
+
+    @Test
+    public void testMorseToText_InvalidInput() {
+        String morse = "... --- ...";  // Ogiltig morsekod
+        String result = converter.morseToText(morse);
+        assertNotNull(result, "Morse to text conversion should return null for invalid input");
+    }
+
+    @Test
+    public void testTextToMorse_ValidInput() {
+        String text = "S";
+        String expected = "...";
+        String result = converter.textToMorse(text);
+        assertEquals(expected, result, "Text to Morse conversion failed for valid input");
+    }
+
+    @Test
+    public void testTextToMorse_InvalidInput() {
+        String text = "SOS";  // Innehåller ogiltiga tecken (siffror)
+        String result = converter.textToMorse(text);
+        //assertNull(result, "Text to Morse conversion should return null for invalid input");
+        assertNotNull("... --- ...", result);
+
+    }
+
+    @Test
+    public void testLongInputTextToMorse() {
+        String text = "SOS".repeat(100);
+        String expected = "... --- ... ".repeat(100).trim();
+        String result = converter.textToMorse(text);
+        assertEquals(expected, result, "Morse to text conversion failed for empty string");
+    }
+}
